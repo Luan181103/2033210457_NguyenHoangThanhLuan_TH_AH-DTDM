@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int ktr_SoChinhPhuong(int num) {
+    int cban2 = sqrt(num);
+    return (cban2 * cban2 == num);
+}
+
+int dem_SoChinhPhuong(int n) {
+    int dem = 0;
+    for(int i = 1; i < n; i++) {
+        if(ktr_SoChinhPhuong(i)) {
+            printf("%d ", i);
+            dem++;
+        }
+    }
+    printf("\nTong so gia tri nho hon la %d", dem);
+}
+int main(void) {
+    printf("\n\nBAI 2: Dem va in ra cac so chinh phuong nho hon n:");
+    int n;
+    scanf("%d", &n);
+    printf("\nSo nhap vao la: %d ", n);
+    printf("\nCac so nho hon %d: ", n);
+    dem_SoChinhPhuong(n);
+    return 0;
+}
