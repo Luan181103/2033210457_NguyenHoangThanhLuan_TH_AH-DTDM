@@ -1,0 +1,35 @@
+# CLient
+
+from ._anvil_designer import Form1Template
+from anvil import *
+import anvil.server
+
+
+class Form1(Form1Template):
+  def __init__(self, **properties):
+    # Set Form properties and Data Bindings.
+    self.init_components(**properties)
+
+  def btn_click(self, **event_args):
+    self.outp_a.text = anvil.server.call('bubbleSort',self.inp.text)
+
+# Server
+import anvil.server
+@anvil.server.callable
+
+def bubbleSort(arr):
+  arr = list(map(int, arr.split()))
+
+  for i in range(len(arr)):
+        for j in range(0, len(arr) - i - 1):
+            if arr[j] > arr[j + 1]:
+                temp = arr[j]
+                arr[j] = arr[j+1]
+                arr[j+1] = temp
+
+  tmp = ""
+  for n in arr:
+    tmp += str(n) + " "
+  
+  return tmp
+
